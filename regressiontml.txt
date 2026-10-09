@@ -1,0 +1,14 @@
+PS C:\Users\harsh.PC\Downloads\ML project> python regression.py 
+[23:51:15] Loading tensor + metadata...
+[23:51:15]   tensor shape: (2198, 25, 95, 10)
+[23:51:15] Pooling 3x3 (masked -- land/missing sentinels excluded from the mean)...
+[23:51:15]   pooled grid: 8 x 31 (from 25 x 95)
+
+[23:51:15] Flattening to a long table and filtering land / missing-heavy cells...
+[23:51:18]   513,473 pooled (location, time) rows survive filtering (land threshold 0.5, missing threshold 0.5)
+
+[23:51:18] Building lag features + ~1-month-ahead target (same definitions as the tabular pipeline)...
+[23:51:18]   505,496 final rows after dropping incomplete lags/target
+
+[23:51:29] [saved] C:\Users\harsh.PC\Downloads\ML project\tml_dataset_pooled.csv
+[23:51:29] Total time: 14.2s

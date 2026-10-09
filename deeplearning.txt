@@ -1,0 +1,42 @@
+PS C:\Users\harsh.PC\Downloads\ML project\DeeplearningLSTM> python train.py
+[22:42:12] Using device: cuda (NVIDIA GeForce RTX 3060)
+[22:42:12] Mixed precision (AMP): True
+[22:42:12] Loading tensor + metadata...
+[22:42:12]   tensor shape: (2198, 25, 95, 10) | channels: ['AFAI', 'land', 'missing', 'swh', 'tp', 'u10', 'v10', 'sst', 'uo', 'vo']
+
+[22:42:12] Building sequence index (input window -> nearest ~1-month-ahead target)...
+[22:42:12]   2174 usable sequence samples out of 2198 timesteps
+[22:42:12]   train/val/test samples: 1521/326/327
+
+[22:42:12] Computing normalization statistics from TRAINING split only...
+[22:42:12]   normalized channels: ['AFAI', 'swh', 'tp', 'u10', 'v10', 'sst', 'uo', 'vo']
+[22:42:12]     AFAI: mean=-0.0010, std=0.0004
+[22:42:12]     swh: mean=1.6438, std=0.6037
+[22:42:12]     tp: mean=0.0001, std=0.0004
+[22:42:12]     u10: mean=-5.9980, std=3.0023
+[22:42:12]     v10: mean=-1.7388, std=2.4550
+[22:42:12]     sst: mean=298.6048, std=24.7530
+[22:42:12]     uo: mean=-0.1034, std=0.1764
+[22:42:12]     vo: mean=0.0471, std=0.1568
+
+[22:42:13] Model parameters: 465,985
+
+C:\Users\harsh.PC\Downloads\ML project\DeeplearningLSTM\train.py:209: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=USE_AMP)
+[22:42:14] Starting training...
+[22:42:41] Epoch    1/1000 | train_loss=0.000038 | val_loss=0.000001 | val_MAE=0.00070 | val_R2=-6.6593 | lr=1.00e-03
+[22:50:55] Epoch   20/1000 | train_loss=0.000000 | val_loss=0.000000 | val_MAE=0.00024 | val_R2=0.2234 | lr=1.00e-03
+[22:59:39] Epoch   40/1000 | train_loss=0.000000 | val_loss=0.000000 | val_MAE=0.00028 | val_R2=-0.0438 | lr=5.00e-04
+[23:08:04] Epoch   60/1000 | train_loss=0.000000 | val_loss=0.000000 | val_MAE=0.00022 | val_R2=0.3288 | lr=1.25e-04
+[23:11:26] Early stopping at epoch 68 (no val improvement in 20 epochs). Best val_loss=0.000000
+[23:11:26] Training finished in 29.2 min
+
+[23:11:26] Final evaluation (test set touched once, here only)...
+
+=== Final metrics (masked: excludes land + originally-missing target cells) ===
+  Train | MAE=0.00022  RMSE=0.00029  R2=0.37610
+  Val   | MAE=0.00022  RMSE=0.00029  R2=0.34232
+  Test  | MAE=0.00026  RMSE=0.00035  R2=0.33810
+[23:11:55] [saved] C:\Users\harsh.PC\Downloads\ML project\convlstm_loss_curve.png
+[23:11:55] [saved] C:\Users\harsh.PC\Downloads\ML project\sargassum_convlstm_best.pth
+PS C:\Users\harsh.PC\Downloads\ML project\DeeplearningLSTM> 

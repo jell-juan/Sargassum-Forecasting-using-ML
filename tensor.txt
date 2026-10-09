@@ -1,0 +1,58 @@
+PS C:\Users\harsh.PC\Downloads\ML project> python filter.py
+[22:09:04] Using device: cuda (NVIDIA GeForce RTX 3060)
+[22:09:04] Found 73 monthly AFAI files from 2019-12-01 onward
+[22:09:04] Loading and merging environment files (eager)...
+[22:09:05]   loaded data_stream-wave_stepType-instant.nc: dims={'time': 2922, 'latitude': 45, 'longitude': 95}, lat [0.00, 22.00], lon [-85.00, -38.00]
+[22:09:05]   loaded data_stream-oper_stepType-accum.nc: dims={'time': 2922, 'latitude': 89, 'longitude': 189}, lat [0.00, 22.00], lon [-85.00, -38.00]
+[22:09:07]   loaded data_stream-oper_stepType-instant.nc: dims={'time': 2922, 'latitude': 89, 'longitude': 189}, lat [0.00, 22.00], lon [-85.00, -38.00]
+[22:09:21]   loaded cmems_mod_glo_phy_my_0.083deg_P1D-m_uo-vo_85.00W-38.00W_0.00N-22.00N_0.49m_2018-01-01-2025-12-31.nc: dims={'time': 2922, 'depth': 1, 'latitude': 265, 'longitude': 565}, lat [0.00, 22.00], lon [-85.00, -38.00]
+[22:09:21]   using data_stream-wave_stepType-instant.nc as reference grid (45x95)
+[22:09:21]   [data_stream-oper_stepType-accum.nc] grid (89x189, lat [0.00, 22.00]) differs from reference (45x95) -- regridding via nearest-neighbor
+[22:09:21]   [data_stream-oper_stepType-instant.nc] grid (89x189, lat [0.00, 22.00]) differs from reference (45x95) -- regridding via nearest-neighbor
+[22:09:22]   [cmems_mod_glo_phy_my_0.083deg_P1D-m_uo-vo_85.00W-38.00W_0.00N-22.00N_0.49m_2018-01-01-2025-12-31.nc] grid (265x565, lat [0.00, 22.00]) differs from reference (45x95) -- regridding via nearest-neighbor
+[22:09:24]   merged dims: {'time': 2922, 'latitude': 45, 'longitude': 95, 'depth': 1}
+[22:09:24]   latitude coord after merge: dtype=float64, first 3=[22.  21.5 21. ], last 3=[1.  0.5 0. ], monotonic_increasing=False, monotonic_decreasing=True
+[22:09:25] Environment grid ready: 25 x 95 (lat 10.00 to 22.00), 2922 timesteps
+
+[22:09:26] Building static land mask from shapefile...
+[22:09:26]   shapefile bounding box: lon [-180.00, 180.00], lat [-90.00, 83.65]
+[22:09:26]   170/2375 grid cells classified as land (7.2%)
+
+[22:09:26] Pass 1: scanning monthly AFAI files for timestamps and grid consistency...
+[22:09:46]   scanned 10/73 files
+[22:10:05]   scanned 20/73 files
+[22:10:23]   scanned 30/73 files
+[22:10:42]   scanned 40/73 files
+[22:11:01]   scanned 50/73 files
+[22:11:20]   scanned 60/73 files
+[22:11:37]   scanned 70/73 files
+[22:11:42]   scanned 73/73 files
+[22:11:42]   2198 distinct AFAI timestamps: 2019-12-01T12:00:00.000000000 to 2025-12-31T12:00:00.000000000 (135s)
+
+[22:11:42] Precomputing AFAI-grid -> environment-grid cell mapping...
+[22:11:42]   2,507,200/2,507,200 AFAI native grid points fall within the target region and map onto the 25x95 environment grid
+
+[22:11:42] Pass 2: aggregating AFAI onto the environment grid (GPU scatter-add, eager per-file loading)...
+[22:12:04]   processed 10/73 monthly files | 0.45 files/s | ETA 141s
+[22:12:26]   processed 20/73 monthly files | 0.45 files/s | ETA 117s
+[22:12:48]   processed 30/73 monthly files | 0.45 files/s | ETA 95s
+[22:13:09]   processed 40/73 monthly files | 0.46 files/s | ETA 72s
+[22:13:32]   processed 50/73 monthly files | 0.45 files/s | ETA 51s
+[22:13:53]   processed 60/73 monthly files | 0.46 files/s | ETA 29s
+[22:14:13]   processed 70/73 monthly files | 0.46 files/s | ETA 6s
+[22:14:19]   processed 73/73 monthly files | 0.46 files/s | ETA 0s
+[22:14:19]   observed AFAI range: [-0.0020, 0.0040] -- confirm well clear of LAND_VALUE=-1.0
+
+[22:14:19] Pass 3: attaching environment channels...
+[22:14:19]   attached channel: swh
+[22:14:19]   attached channel: tp
+[22:14:19]   attached channel: u10
+[22:14:19]   attached channel: v10
+[22:14:19]   attached channel: sst
+[22:14:19]   attached channel: uo
+[22:14:19]   attached channel: vo
+[22:14:19] Remaining NaNs in final tensor: 0 (should be 0)
+[22:14:19] Tensor complete: shape (2198, 25, 95, 10)
+
+[22:14:19] [saved] C:\Users\harsh.PC\Downloads\ML project\dl_tensor.pt
+[22:14:19] [saved] C:\Users\harsh.PC\Downloads\ML project\dl_tensor_metadata.pt (time/latitude/longitude/channel labels + land sentinel value)
